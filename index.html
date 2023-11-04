@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>list</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+<body class="p-2 w-screen min-h-screen flex justify-center items-center" >
+    <section class="list ">
+    <h4 class="title text-blue-600 font-bold text-center text-lg">Up List</h4>
+    <label for="newPerson" class="block text-gray-500 text-xs">Name</label>
+    <input type="string" class="border p-2 min-w-full" name="newPerson" id="newPerson"placeholder="add person"></br>
+
+    <button type="submit" class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1" onclick="addToUpList()" id="add">add</button>
+    <button type="submit" onclick="removeFromUpList()" id="remove" class="border text-stone-100 bg-red-400 hover:bg-red-600 w-24 py-0.5 my-2 px-1">remove</button>
+    <button type="submit" id="completed" onclick="adjustList()" class="border-2 border-blue-400 text-gray-600 hover:bg-blue-600 w-24 py-0.5 my-2 px-1 hover:text-stone-100">completed</button>
+
+    <button id="find">Find</button>
+
+
+    <p class="livelist" id="live-list"></p>
+
+    <div >
+        <ol class="mock-list"></ol>
+
+    </div>
+
+
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
