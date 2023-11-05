@@ -13,7 +13,13 @@ function adjustList() {
   liveList.innerHTML = `${list.join(", ")}`;
   newPerson.value = "";
 }
-
+function add() {
+  const name = newPerson.value.toLowerCase();
+  if (list.includes(name)) return;
+  list.push(name);
+  liveList.innerHTML = `${list.join(", ")}`;
+  newPerson.value = "";
+}
 // const arr = employees.filter((employee) =>
 //   employee.name.toLowerCase().includes("on")
 // );
