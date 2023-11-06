@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="p-2 w-screen min-h-screen flex justify-center items-center">
+  <body class="w-screen min-h-screen flex justify-center items-center">
     <main>
       <section>
         <h1>Time</h1>
@@ -27,37 +27,39 @@
           placeholder="add person to uplist"
         /><br />
 
-        <button
-          type="submit"
-          class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1"
-          onclick="addToUpList()"
-          id="add"
-        >
-          add
-        </button>
-        <button
-          type="submit"
-          onclick="removedFromUpList()"
-          id="remove"
-          class="border text-stone-100 bg-red-400 hover:bg-red-600 w-24 py-0.5 my-2 px-1"
-        >
-          scratch
-        </button>
-        <button
-          type="submit"
-          id="completed"
-          onclick="adjustList()"
-          class="border-2 border-blue-400 text-gray-600 hover:bg-blue-600 w-24 py-0.5 my-2 px-1 hover:text-stone-100"
-        >
-          Took Up
-        </button>
+        <section class="flex justify-between px-1">
+          <button
+            type="submit"
+            class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1 sm:w-20 mx-1"
+            onclick="addToUpList()"
+            id="add"
+          >
+            add
+          </button>
+          <button
+            type="submit"
+            onclick="removedFromUpList()"
+            id="remove"
+            class="border text-stone-100 bg-red-400 hover:bg-red-600 w-24 py-0.5 my-2 px-1 sm:20 mx-1"
+          >
+            scratch
+          </button>
+          <button
+            type="submit"
+            id="completed"
+            onclick="adjustList()"
+            class="border-2 border-blue-400 text-gray-600 hover:bg-blue-600 w-24 py-0.5 my-2 px-1 hover:text-stone-100 sm:w-20 mx-1"
+          >
+            Took Up
+          </button>
 
-        <button
-          id="undo"
-          class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1"
-        >
-          Undo
-        </button>
+          <button
+            id="undo"
+            class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1 sm:w-20 mx-1"
+          >
+            Undo
+          </button>
+        </section>
 
         <!-- <p class="livelist" id="live-list"></p> -->
 
