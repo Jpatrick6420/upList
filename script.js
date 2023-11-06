@@ -1,6 +1,9 @@
 let recentUpList = [];
 let upList = [];
 
+let undoRecentUpList = [];
+let undoUpList = [];
+
 const addToList = document.getElementById("add");
 
 const currentUpList = document.querySelector(".current-up-list");
@@ -19,6 +22,9 @@ const time = document.querySelector(".time");
 
 const recentlyTakenUpsList = document.querySelector("#recently-taken-ups");
 
+const resetBtn = document.querySelector("#reset-btn");
+const undoResetBtn = document.querySelector("#undo-reset-btn");
+
 const NUM_OF_UNDOS = 4;
 
 class Employee {
@@ -26,6 +32,14 @@ class Employee {
     this.name = name;
     this.contacted = contacted;
   }
+}
+
+function setInitState() {
+  undoRecentUpList = recentUpList;
+  undoUpList = upList;
+  upList = [];
+  recentUpList = [];
+  currentUpList.innerHTML = "";
 }
 
 const employees = [];
@@ -68,6 +82,8 @@ const mark = new Employee("Mark", false);
 
 const james = new Employee("James", false);
 
+const brant = new Employee("Brant", false);
+
 employees.push(
   pam,
   conway,
@@ -86,7 +102,9 @@ employees.push(
   blaine,
   mark,
   james,
-  leslie
+  leslie,
+  brant,
+  keith
 );
 
 function allowedInLeather() {
@@ -190,3 +208,17 @@ function getTime() {
 }
 
 setInterval(getTime, 1000);
+
+resetBtn.addEventListener("click", function () {
+  setInitState();
+  undoResetBtn.classList.remove("hidden");
+  resetBtn.classList.add("hidden");
+});
+undoResetBtn.addEventListener("click", function () {
+  upList = undoUpList;
+  recentUpList = undoRecentUpList;
+  undoResetBtn.classList.add("hidden");
+  resetBtn.classList.remove("hidden");
+
+  insertCard(upList);
+});
