@@ -1,29 +1,20 @@
+const addToList = document.getElementById("add");
+const currentUpList = document.querySelector(".current-up-list");
+const undoAdjustList = document.getElementById("undo");
+const removeFromList = document.getElementById("remove");
+const completed = document.getElementById("completed");
+const newPerson = document.getElementById("newPerson");
+const liveList = document.getElementById("live-list");
+const time = document.querySelector(".time");
+const recentlyTakenUpsList = document.querySelector("#recently-taken-ups");
+const resetBtn = document.querySelector("#reset-btn");
+const undoResetBtn = document.querySelector("#undo-reset-btn");
+
 let recentUpList = [];
 let upList = [];
 
 let undoRecentUpList = [];
 let undoUpList = [];
-
-const addToList = document.getElementById("add");
-
-const currentUpList = document.querySelector(".current-up-list");
-
-const undoAdjustList = document.getElementById("undo");
-
-const removeFromList = document.getElementById("remove");
-
-const completed = document.getElementById("completed");
-
-const newPerson = document.getElementById("newPerson");
-
-const liveList = document.getElementById("live-list");
-
-const time = document.querySelector(".time");
-
-const recentlyTakenUpsList = document.querySelector("#recently-taken-ups");
-
-const resetBtn = document.querySelector("#reset-btn");
-const undoResetBtn = document.querySelector("#undo-reset-btn");
 
 const NUM_OF_UNDOS = 4;
 
@@ -45,43 +36,24 @@ function setInitState() {
 const employees = [];
 
 const conway = new Employee("Conway", false);
-
 const justin = new Employee("Justin", false);
-
 const hutch = new Employee("Hutch", false);
-
 const yvette = new Employee("Yvette", false);
-
 const jason = new Employee("Jason", false);
-
 const nick = new Employee("Nick", false);
-
 const patty = new Employee("Patty", false);
-
 const deb = new Employee("Deb", false);
-
 const kim = new Employee("Kim", false);
-
 const pam = new Employee("Pam", false);
-
 const scott = new Employee("Scott", false);
-
 const dave = new Employee("Dave", false);
-
 const doug = new Employee("Doug", false);
-
 const karen = new Employee("Karen", false);
-
 const blaine = new Employee("Blaine", false);
-
 const keith = new Employee("Keith", false);
-
 const leslie = new Employee("Leslie", false);
-
 const mark = new Employee("Mark", false);
-
 const james = new Employee("James", false);
-
 const brant = new Employee("Brant", false);
 
 employees.push(
@@ -152,14 +124,17 @@ function removedFromUpList() {
   newPerson.value = "";
 }
 
-function addToUpList() {
-  const firstLetter = newPerson.value.slice(0, 1).toUpperCase();
-  const restOfName = newPerson.value.slice(1).toLowerCase();
+function nameFormat(input) {
+  const firstLetter = input.value.slice(0, 1).toUpperCase();
+  const restOfName = input.value.slice(1).toLowerCase();
   const name = firstLetter + restOfName;
+  return name;
+}
+
+function addToUpList() {
+  const name = nameFormat(newPerson);
 
   const employee = employees.find((i) => i.name === name);
-
-  //   console.log(employee, employees[employee]);
 
   const alreadyOnList = upList.filter((person) => person.name === name);
 
@@ -171,7 +146,6 @@ function addToUpList() {
     insertCard(upList);
     newPerson.value = "";
   }
-  console.log(upList);
 }
 
 function adjustList() {
@@ -189,11 +163,7 @@ function undoSkip() {
   if (recentUpList.length === 0) return;
   const employee = recentUpList.pop();
 
-  console.log(employee);
-
   upList.unshift(employee);
-
-  console.log(upList);
 
   currentUpList.innerHTML = "";
   insertCard(upList);
