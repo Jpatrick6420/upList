@@ -1,11 +1,11 @@
-// let list = [];
+let recentUpList = [];
 let upList = [];
 
 const addToList = document.getElementById("add");
 
 const currentUpList = document.querySelector(".current-up-list");
 
-const findBtn = document.getElementById("find");
+const undoAdjustList = document.getElementById("undo");
 
 const removeFromList = document.getElementById("remove");
 
@@ -14,55 +14,57 @@ const completed = document.getElementById("completed");
 const newPerson = document.getElementById("newPerson");
 
 const liveList = document.getElementById("live-list");
-const inLine = document.querySelectorAll(".in-line");
+
+const time = document.querySelector(".time");
+
+const recentlyTakenUpsList = document.querySelector("#recently-taken-ups");
 
 class Employee {
-  constructor(name, position, contacted) {
+  constructor(name, contacted) {
     this.name = name;
-    this.position = position;
     this.contacted = contacted;
   }
 }
 
 const employees = [];
 
-const conway = new Employee("Conway", "furniture Sales", false);
+const conway = new Employee("Conway", false);
 
-const justin = new Employee("Justin", "furniture Sales", false);
+const justin = new Employee("Justin", false);
 
-const hutch = new Employee("Hutch", "furniture Sales", false);
+const hutch = new Employee("Hutch", false);
 
-const yvette = new Employee("Yvette", "furniture Sales", false);
+const yvette = new Employee("Yvette", false);
 
-const jason = new Employee("Jason", "furniture Sales", false);
+const jason = new Employee("Jason", false);
 
-const nick = new Employee("Nick", "furniture Sales", false);
+const nick = new Employee("Nick", false);
 
-const patty = new Employee("Patty", "furniture Sales", false);
+const patty = new Employee("Patty", false);
 
-const deb = new Employee("Deb", "furniture Sales", false);
+const deb = new Employee("Deb", false);
 
-const kim = new Employee("Kim", "furniture Sales", false);
+const kim = new Employee("Kim", false);
 
-const pam = new Employee("Pam", "furniture Sales", false);
+const pam = new Employee("Pam", false);
 
-const scott = new Employee("Scott", "furniture Sales", false);
+const scott = new Employee("Scott", false);
 
-const dave = new Employee("Dave", "furniture Sales", false);
+const dave = new Employee("Dave", false);
 
-const doug = new Employee("Doug", "furniture Sales", false);
+const doug = new Employee("Doug", false);
 
-const karen = new Employee("Karen", "furniture Sales", false);
+const karen = new Employee("Karen", false);
 
-const blaine = new Employee("Blaine", "furniture Sales", false);
+const blaine = new Employee("Blaine", false);
 
-const keith = new Employee("Keith", "furniture Sales", false);
+const keith = new Employee("Keith", false);
 
-const leslie = new Employee("Leslie", "furniture Sales", false);
+const leslie = new Employee("Leslie", false);
 
-const mark = new Employee("Mark", "furniture Sales", false);
+const mark = new Employee("Mark", false);
 
-const james = new Employee("James", "furniture Sales", false);
+const james = new Employee("James", false);
 
 employees.push(
   pam,
@@ -85,10 +87,24 @@ employees.push(
   leslie
 );
 
-const placeHolder = new Employee("Placeholder", "furniture sales", false);
-employees.unshift(placeHolder);
+function allowedInLeather() {
+  upList.forEach((person) => (person.contacted = false));
+  console.log(upList);
+
+  if (upList.length < 4) {
+    upList.forEach((person) => (person.contacted = true));
+  }
+  if (upList.length >= 4) {
+    upList[0].contacted = true;
+    upList[1].contacted = true;
+    upList[2].contacted = true;
+    upList[3].contacted = true;
+  }
+}
 
 function insertCard(list) {
+  allowedInLeather();
+  //
   list.forEach((person) => {
     const html = `<li class=" in-line border-2 px-4  border-l-8 ${
       person.contacted == true ? "border-l-green-500" : "border-l-blue-500"
@@ -121,24 +137,50 @@ function addToUpList() {
   const restOfName = newPerson.value.slice(1).toLowerCase();
   const name = firstLetter + restOfName;
 
-  const employee = employees.findIndex((i) => i.name === name);
+  const employee = employees.find((i) => i.name === name);
 
   //   console.log(employee, employees[employee]);
 
   const alreadyOnList = upList.filter((person) => person.name === name);
+
   if (alreadyOnList.length > 0) return;
+
   if (employee) {
     currentUpList.innerHTML = "";
-    upList.push(employees[employee]);
+    upList.push(employee);
     insertCard(upList);
     newPerson.value = "";
   }
   console.log(upList);
 }
-console.log(employees);
 
 function adjustList() {
-  upList.shift();
+  const recentUp = upList.shift();
+  currentUpList.innerHTML = "";
+  insertCard(upList);
+  recentUpList.push(recentUp);
+  console.log(recentUpList);
+}
+
+function undoSkip() {
+  const employee = recentUpList.pop();
+
+  console.log(employee);
+
+  upList.unshift(employee);
+
+  console.log(upList);
+
   currentUpList.innerHTML = "";
   insertCard(upList);
 }
+
+undoAdjustList.addEventListener("click", undoSkip);
+
+function getTime() {
+  const now = new Date();
+
+  time.textContent = `${now.toLocaleTimeString()}`;
+}
+
+setInterval(getTime, 1000);
