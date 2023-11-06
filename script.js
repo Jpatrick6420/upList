@@ -19,6 +19,8 @@ const time = document.querySelector(".time");
 
 const recentlyTakenUpsList = document.querySelector("#recently-taken-ups");
 
+const NUM_OF_UNDOS = 4;
+
 class Employee {
   constructor(name, contacted) {
     this.name = name;
@@ -159,10 +161,14 @@ function adjustList() {
   currentUpList.innerHTML = "";
   insertCard(upList);
   recentUpList.push(recentUp);
-  console.log(recentUpList);
+  if (recentUpList.length > NUM_OF_UNDOS) {
+    const trimmedList = recentUpList.slice(recentUpList.length - NUM_OF_UNDOS);
+    recentUpList = trimmedList;
+  }
 }
 
 function undoSkip() {
+  if (recentUpList.length === 0) return;
   const employee = recentUpList.pop();
 
   console.log(employee);
