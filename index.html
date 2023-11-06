@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="w-screen min-h-screen flex justify-center items-center p-4">
-    <main class="sm:px-1">
-      <section class="px-1">
-        <h1>Time</h1>
+    <main class="mx-2">
+      <section class="flex justify-center">
         <p class="time"></p>
         <ol id="recently-taken-ups"></ol>
       </section>
@@ -30,7 +29,7 @@
         <section class="flex justify-between px-1">
           <button
             type="submit"
-            class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1 sm:w-16 mx-1"
+            class="border text-stone-100 bg-green-500 hover:bg-green-700 md:w-24 py-0.5 my-2 px-1 w-20 mx-1"
             onclick="addToUpList()"
             id="add"
           >
@@ -40,7 +39,7 @@
             type="submit"
             onclick="removedFromUpList()"
             id="remove"
-            class="border text-stone-100 bg-red-400 hover:bg-red-600 w-24 py-0.5 my-2 px-1 sm:16 mx-1"
+            class="border text-stone-100 bg-red-400 hover:bg-red-600 md:w-24 py-0.5 my-2 px-1 w-20 mx-1"
           >
             scratch
           </button>
@@ -49,14 +48,14 @@
             type="submit"
             id="completed"
             onclick="adjustList()"
-            class="border-2 border-blue-400 text-gray-600 hover:bg-blue-600 w-24 py-0.5 my-2 px-1 hover:text-stone-100 sm:w-16 mx-1"
+            class="border-2 border-blue-400 text-gray-600 hover:bg-blue-600 md:w-24 py-0.5 my-2 px-1 hover:text-stone-100 w-20 mx-1"
           >
             Took Up
           </button>
 
           <button
             id="undo"
-            class="border text-stone-100 bg-green-500 hover:bg-green-700 w-24 py-0.5 my-2 px-1 sm:w-20 mx-1"
+            class="border text-stone-100 bg-green-500 hover:bg-green-700 md:w-24 py-0.5 my-2 px-1 w-20 mx-1"
           >
             Undo
           </button>
