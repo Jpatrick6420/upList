@@ -55,6 +55,9 @@ const leslie = new Employee("Leslie", false);
 const mark = new Employee("Mark", false);
 const james = new Employee("James", false);
 const brant = new Employee("Brant", false);
+const dean = new Employee("Dean", false);
+const robert = new Employee("Robert", false);
+const stephen = new Employee ("Stephen", false);
 
 employees.push(
   pam,
@@ -76,7 +79,10 @@ employees.push(
   james,
   leslie,
   brant,
-  keith
+  keith, 
+  dean,
+  robert,
+  stephen
 );
 
 function allowedInLeather() {
