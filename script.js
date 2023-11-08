@@ -119,7 +119,7 @@ function insertCard(list) {
 }
 
 function removedFromUpList() {
-  const name = newPerson.value.toLowerCase();
+  const name = newPerson.value.toLowerCase().trim();
 
   if (!name) return;
 
@@ -144,7 +144,7 @@ function nameFormat(input) {
 }
 
 function addToUpList() {
-  const name = nameFormat(newPerson);
+  const name = nameFormat(newPerson).trim();
 
   const employee = employees.find((i) => i.name === name);
 
@@ -199,7 +199,15 @@ resetBtn.addEventListener("click", function () {
   setInitState();
   undoResetBtn.classList.remove("hidden");
   resetBtn.classList.add("hidden");
+  setTimeout(resetUndoResetButton, 4000);
 });
+
+const resetUndoResetButton = function () {
+  undoRecentUpList = [];
+  undoResetBtn.classList.add("hidden");
+  resetBtn.classList.remove("hidden");
+};
+
 undoResetBtn.addEventListener("click", function () {
   upList = undoUpList;
   recentUpList = undoRecentUpList;
