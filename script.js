@@ -189,7 +189,6 @@ function getTime() {
   time.textContent = `${now.toLocaleDateString("en", {
     month: "long",
     day: "numeric",
-    year: "numeric",
   })}`;
 }
 
