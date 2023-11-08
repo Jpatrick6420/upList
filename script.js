@@ -19,9 +19,9 @@ let undoUpList = [];
 const NUM_OF_UNDOS = 4;
 
 class Employee {
-  constructor(name, contacted) {
+  constructor(name, allowedInLeather) {
     this.name = name;
-    this.contacted = contacted;
+    this.allowedInLeather = allowedInLeather;
   }
 }
 
@@ -57,7 +57,7 @@ const james = new Employee("James", false);
 const brant = new Employee("Brant", false);
 const dean = new Employee("Dean", false);
 const robert = new Employee("Robert", false);
-const stephen = new Employee ("Stephen", false);
+const stephen = new Employee("Stephen", false);
 
 employees.push(
   pam,
@@ -79,24 +79,24 @@ employees.push(
   james,
   leslie,
   brant,
-  keith, 
+  keith,
   dean,
   robert,
   stephen
 );
 
 function allowedInLeather() {
-  upList.forEach((person) => (person.contacted = false));
+  upList.forEach((person) => (person.allowedInLeather = false));
   console.log(upList);
 
   if (upList.length < 4) {
-    upList.forEach((person) => (person.contacted = true));
+    upList.forEach((person) => (person.allowedInLeather = true));
   }
   if (upList.length >= 4) {
-    upList[0].contacted = true;
-    upList[1].contacted = true;
-    upList[2].contacted = true;
-    upList[3].contacted = true;
+    upList[0].allowedInLeather = true;
+    upList[1].allowedInLeather = true;
+    upList[2].allowedInLeather = true;
+    upList[3].allowedInLeather = true;
   }
 }
 
@@ -105,8 +105,14 @@ function insertCard(list) {
   //
   list.forEach((person) => {
     const html = `<li class=" in-line border-2 px-4  border-l-8 ${
-      person.contacted == true ? "border-l-green-500" : "border-l-blue-500"
-    } my-1"><p>${person.name}</p><p>contacted ${person.contacted}</p></li>`;
+      person.allowedInLeather == true
+        ? "border-l-green-500"
+        : "border-l-blue-500"
+    } my-1"><p>${
+      person.name
+    }</p><p>Allowed in Leather <emp class='text-purple-600 mx-4'>${
+      person.allowedInLeather === true ? "Yes" : "No"
+    }</emp></p></li>`;
 
     currentUpList.insertAdjacentHTML("beforeend", html);
   });
@@ -180,10 +186,14 @@ undoAdjustList.addEventListener("click", undoSkip);
 function getTime() {
   const now = new Date();
 
-  time.textContent = `${now.toLocaleTimeString()}`;
+  time.textContent = `${now.toLocaleDateString("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })}`;
 }
 
-setInterval(getTime, 1000);
+getTime();
 
 resetBtn.addEventListener("click", function () {
   setInitState();
